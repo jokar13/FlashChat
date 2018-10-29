@@ -29,7 +29,7 @@ public class MainChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_chat);
 
         // TODO: Set up the display name and get the Firebase reference
-
+        setupDisplayName();
 
         // Link the Views in the layout to the Java code
         mInputText = (EditText) findViewById(R.id.messageInput);
@@ -44,6 +44,14 @@ public class MainChatActivity extends AppCompatActivity {
     }
 
     // TODO: Retrieve the display name from the Shared Preferences
+    private void setupDisplayName(){
+
+        SharedPreferences prefs = getSharedPreferences(RegisterActivity.CHAT_PREFS, MODE_PRIVATE);
+
+        mDisplayName = prefs.getString(RegisterActivity.DISPLAY_NAME_KEY, null);
+
+        if (mDisplayName == null) mDisplayName = "Anonymous";
+    }
 
 
     private void sendMessage() {
